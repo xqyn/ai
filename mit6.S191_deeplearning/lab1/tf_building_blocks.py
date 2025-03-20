@@ -13,11 +13,17 @@ import mitdeeplearning as mdl
 
 # --------------------------------------------------
 
-
 # super(OurDenseLayer, self).__init__() calls the parent class’s __init__ method for the current instance (self).
 # It ensures the parent class’s initialization runs, setting up inherited features.
 # In your case, it prepares OurDenseLayer to work as a proper subclass of its parent (e.g., a neural network layer class).
 # In Python 3, you could simplify it to super().__init__().
+
+### Defining a network Layer ###
+
+# n_output_nodes: number of output nodes
+# input_shape: shape of the input
+# x: input to the layer
+
 
 class DenseLayers(tf.keras.layers.Layer):
     def __init__(self, n_output_nodes):
@@ -37,10 +43,9 @@ class DenseLayers(tf.keras.layers.Layer):
         y = tf.sigmoid(z)
         return y
 
-
 # Since layer parameters are initialized randomly, we will set a random seed for reproducibility
 tf.keras.utils.set_random_seed(1)
-layer = DenseLayers(3)
+layer = DenseLayer(3)
 layer.build((1,2))
 x_input = tf.constant([[1,2.]], shape=(1,2))
 y = layer.call(x_input)
